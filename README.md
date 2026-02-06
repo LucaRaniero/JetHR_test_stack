@@ -4,7 +4,7 @@ A full-stack application featuring a Django backend and a Vue.js frontend, orche
 
 ## Technlogy Stack
 
-*   **Backend**: Django 5, Django Rest Framework (DRF), PostgreSQL, Boto3.
+*   **Backend**: Django 5, Django Rest Framework (DRF), PostgreSQL (but on AWS RDS), Boto3.
 *   **Frontend**: Vue 3, Vite, Pinia, Axios.
 *   **Infrastructure**: Docker Compose.
 
