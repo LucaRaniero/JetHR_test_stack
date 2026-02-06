@@ -1,0 +1,6 @@
+Django==5.0.2           # Il Framework
+djangorestframework==3.14.0  # Per le API JSON (comunica con Vue)
+psycopg2==2.9.9         # Il Driver Postgres (quello che necessita di gcc)
+python-dotenv==1.0.1    # Per leggere le variabili d'ambiente (opzionale ma utile)
+boto3==1.34.45          # SDK AWS (per parlare con S3)
+django-cors-headers==4.3.1 # Per permettere al Frontend (porta 8080) di chiamare il Backend (8000)

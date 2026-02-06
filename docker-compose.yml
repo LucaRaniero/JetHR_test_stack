@@ -1,0 +1,38 @@
+# version: '3.8'  # Versione standard di Docker Compose
+
+services:
+  # --- SERVIZIO BACKEND (Django) ---
+  backend:
+    build:
+      context: ./backend      # Dove cercare il Dockerfile
+      dockerfile: Dockerfile
+    container_name: jethr_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      # IL "HOT RELOAD": Mappa la tua cartella locale dentro il container.
+      # Se modifichi un file .py sul tuo PC, il container lo vede subito e si riavvia.
+      - ./backend:/app
+    ports:
+      - "8000:8000"           # Espone la porta 8000 (Host) -> 8000 (Container)
+    env_file:
+      - .env                  # Inietta le password di AWS e DB nel container
+    restart: on-failure
+
+  # --- SERVIZIO FRONTEND (Vue.js) ---
+  frontend:
+    build:
+      context: ./frontend     # Cercherà il Dockerfile qui (che faremo tra poco)
+      dockerfile: Dockerfile
+    container_name: jethr_frontend
+    volumes:
+      # Mappiamo il codice sorgente per vedere le modifiche live
+      - ./frontend:/app
+      # TRUCCO NODE: Evitiamo di sovrascrivere la cartella node_modules del container
+      # con quella locale (che potrebbe non esistere o essere diversa per OS).
+      - /app/node_modules
+    ports:
+      - "8080:5173"           # Mappa 8080 (PC) -> 5173 (Vite Default Port)
+    env_file:
+      - .env
+    depends_on:
+      - backend               # Avvia il frontend solo dopo che il backend è partito

@@ -1,0 +1,23 @@
+# --- SICUREZZA ---
+.env
+.DS_Store
+keys/
+
+# --- PYTHON ---
+__pycache__/
+*.py[cod]
+venv/
+env/
+
+# --- DOCKER ---
+# Non serve versionare i log o dati temporanei
+.docker/
+
+# --- FRONTEND ---
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea/
+.vscode/
